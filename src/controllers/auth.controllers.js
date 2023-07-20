@@ -17,15 +17,13 @@ export const Register = async (req, res) => {
         const rolesIDFinder = await rolesModel.findOne({
           name: req.body.roles,
         });
-       const link=  await SimpleLinkModel.create({
-          
-       })
+        const link = await SimpleLinkModel.create({});
         await userModel.create({
           userName: userName,
           roles: rolesIDFinder._id,
           email: email,
           password: await HashPassword(password),
-          SimpleLink:link._id,
+          SimpleLink: link._id,
         });
 
         res.status(200).json({ msg: "created user" });

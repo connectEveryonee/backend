@@ -22,7 +22,6 @@ export default function PermissionCheck(permission) {
         next();
       } else {
         if (user.roles[0].permissions[0].name != permission) {
-          console.log(user);
           res.status(400);
           res.status("unauthorised");
         } else {
