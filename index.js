@@ -23,9 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 app.use(cookieParser());
 // routes declaration
-app.use("/", (req, res) => {
-  res.send("hellow there");
-});
+
 app.use("/api", indexRoute);
 
 //dbConnection
