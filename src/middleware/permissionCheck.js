@@ -14,8 +14,8 @@ export default function PermissionCheck(permission) {
           select: "name",
         },
       });
-
-      const adminChecker = user.roles.find((data) => {
+    
+      const adminChecker =   user.roles.find((data) => {
         return data.name === "admin";
       });
       if (adminChecker) {

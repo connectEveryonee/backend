@@ -65,7 +65,13 @@ export async function Login(req, res) {
           encode: Object,
         });
         res.status(200);
-        res.send({ token: jwttoken });
+        res.send({
+          userInfo: {
+            userName: userFinder.userName,
+            token: jwttoken,
+            email: userFinder.email,
+          },
+        });
       } else {
         res.status(401);
         res.send("bad password");

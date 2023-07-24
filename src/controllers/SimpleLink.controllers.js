@@ -45,7 +45,6 @@ export async function UpdateLinkItems(req, res) {
       { _id: userFinder.SimpleLink },
       { links: req.body }
     );
-
     res.status(200);
     res.send("Updation Sucessful");
   } catch (err) {
