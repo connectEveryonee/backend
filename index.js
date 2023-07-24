@@ -29,6 +29,6 @@ app.use('/',(req,res)=>{
 app.use("/api", indexRoute);
 
 //dbConnection
-app.listen(4000, () => {
+app.listen(3001, () => {
   DbConnect(`${process.env.Mongo_Url}`);
 });
