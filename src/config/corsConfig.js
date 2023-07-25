@@ -1,4 +1,4 @@
 export const corsOptions = {
-  origin: "https://simplelinks.netlify.app",
+  origin: "http://localhost:3000",
   credentials: true,
 };
