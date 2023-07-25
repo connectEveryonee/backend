@@ -61,12 +61,12 @@ export async function Login(req, res) {
         res.cookie("userInfo", JSON.stringify(userFinder._doc), {
           encode: Object,
           sameSite:'None',
-          secure:false,
+          secure:true,
         });
         res.cookie("access_token", JSON.stringify(jwttoken), {
            encode: Object,
          sameSite:'None',
-          secure:false,
+          secure:true,
         });
         res.status(200);
         res.send({
