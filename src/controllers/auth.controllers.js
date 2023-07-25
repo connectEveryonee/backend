@@ -65,7 +65,8 @@ export async function Login(req, res) {
            encode: Object,
          domain:'http://localhost:3000',
          path:'/login',
-         sameSite:'Lax'
+         sameSite:'None',
+          secure:true,
         });
         res.status(200);
         res.send({
