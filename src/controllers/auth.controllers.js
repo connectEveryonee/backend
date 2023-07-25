@@ -62,7 +62,10 @@ export async function Login(req, res) {
           encode: Object,
         });
         res.cookie("access_token", JSON.stringify(jwttoken), {
-          encode: Object,
+           encode: Object,
+         domain:'http://localhost:3000',
+         path:'/login',
+         sameSite:false
         });
         res.status(200);
         res.send({
