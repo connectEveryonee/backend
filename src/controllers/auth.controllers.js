@@ -60,13 +60,13 @@ export async function Login(req, res) {
         const jwttoken = AssignJwt(email, userFinder._id);
         res.cookie("userInfo", JSON.stringify(userFinder._doc), {
           encode: Object,
+          sameSite:'None',
+          secure:false,
         });
         res.cookie("access_token", JSON.stringify(jwttoken), {
            encode: Object,
-         domain:'http://localhost:3000',
-         path:'/login',
          sameSite:'None',
-          secure:true,
+          secure:false,
         });
         res.status(200);
         res.send({
