@@ -4,6 +4,6 @@ import PermissionCheck from "../middleware/permissionCheck.js";
 
 const router = Router();
 
-router.post("/searchUsername", PermissionCheck("user"), CheckUserName);
+router.post("/searchUsername", CheckUserName);
 
 export default router;
