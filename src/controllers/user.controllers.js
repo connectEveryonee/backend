@@ -17,3 +17,24 @@ export async function CheckUserName(req, res) {
     throw new Error(err);
   }
 }
+
+export async function GetUser(req, res) {
+  console.log(req.data)
+  try {
+    const user = userModel
+      .find({ userName: req.body.userName })
+      .select("email")
+      .select("password")
+      .select("userName")
+      .then((data) => {
+        res.status(200);
+        res.send(data);
+      })
+      .catch((err) => {
+        res.status(404);
+        res.send(err);
+      });
+  } catch (err) {
+    throw new Error(err);
+  }
+}
