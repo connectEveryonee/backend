@@ -5,9 +5,8 @@ import { AssignJwt, VerifyJwt } from "../util/Jwt.js";
 import { ComparePassword, HashPassword } from "../util/crypt.js";
 
 export const Register = async (req, res) => {
-  const { email, password, userName, roles } = req.body;
+  const { email, password, userName, roles, name } = req.body;
   const isEmailTaken = await userModel.findOne({ email });
-
   try {
     if (isEmailTaken) {
       res.status(403);
@@ -17,8 +16,9 @@ export const Register = async (req, res) => {
         const rolesIDFinder = await rolesModel.findOne({
           name: req.body.roles,
         });
-        const link = await SimpleLinkModel.create({});
+        const link = await SimpleLinkModel.create({ owner: userName });
         await userModel.create({
+          name: name,
           userName: userName,
           roles: rolesIDFinder._id,
           email: email,
@@ -30,6 +30,7 @@ export const Register = async (req, res) => {
       } else {
         const rolefinder = await rolesModel.findOne({ name: "user" });
         await userModel.create({
+          name: name,
           userName: firstname,
           roles: rolefinder._id.toHexString(),
           email: email,
@@ -60,13 +61,13 @@ export async function Login(req, res) {
         const jwttoken = AssignJwt(email, userFinder._id);
         res.cookie("userInfo", JSON.stringify(userFinder._doc), {
           encode: Object,
-          sameSite:'None',
-          secure:true,
+          sameSite: "None",
+          secure: true,
         });
         res.cookie("access_token", JSON.stringify(jwttoken), {
-           encode: Object,
-         sameSite:'None',
-          secure:true,
+          encode: Object,
+          sameSite: "None",
+          secure: true,
         });
         res.status(200);
         res.send({
@@ -88,13 +89,6 @@ export async function Login(req, res) {
     console.error(error);
     throw new Error(error);
   }
-}
-
-export async function UpateUser(req, res) {
-  try {
-    const { id } = VerifyJwt(req.cookies.access_token);
-    const update = await userModel.findByIdAndUpdate(id);
-  } catch (error) {}
 }
 
 export async function Logout(req, res) {

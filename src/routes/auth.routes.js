@@ -8,7 +8,7 @@ import {
 const router = Router();
 
 router.post("/register", ValidateUserSchema, Register);
-router.patch("/updateuser");
+// router.patch("/updateuser");
 router.post("/login", ValidateLoginSchema, Login);
 router.get("/logout", Logout);
 export default router;
