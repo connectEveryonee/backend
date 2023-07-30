@@ -19,7 +19,7 @@ export async function CheckUserName(req, res) {
 }
 
 export async function GetUser(req, res) {
-  console.log(req.data)
+
   try {
     const user = userModel
       .find({ userName: req.body.userName })
