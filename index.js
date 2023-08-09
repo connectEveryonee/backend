@@ -11,6 +11,7 @@ import indexRoute from "./src/routes/index.js";
 import { corsOptions } from "./src/config/corsConfig.js";
 import { DbConnect } from "./src/config/DbConfig.js";
 import cookieParser from "cookie-parser";
+import ConnectRedis from "./src/config/redisConfig.js";
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ app.use(cookieParser());
 app.use("/api", indexRoute);
 
 //dbConnection
-app.listen(3001, () => {
+app.listen(process.env.Port, () => {
   DbConnect(`${process.env.Mongo_Url}`);
+  ConnectRedis();
 });
