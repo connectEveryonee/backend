@@ -22,24 +22,20 @@ export async function Ratelimite(req, res, next) {
       });
       next();
     } else {
-      userfinder.hourlyCounter++;
-      // console.log(date.setTime() - date.getTime());
-      // userfinder.lastVisit = date;
+    
       const diff = GetDateDifference(userfinder.lastVisit, date);
       console.log(diff);
-      if (diff.hours >= 1) {
-        res.send("rate limiter");
-        res.send(500);
+      if (diff.hours < 1) {
+        res.send("rate limited");
+        res.status(500);
       } else {
+        
         userfinder.hourlyCounter++;
         userfinder.lastVisit = date;
         await RateLimiterRepository.save(userfinder);
         next();
       }
-      // console.log(userfinder.lastVisit.getTime(),date.getTime())
-
-      // console.log(getDateDifference(userfinder.lastVisit,date))
-      // await RateLimiterRepository.save(userfinder);
+    
     }
   } catch (error) {
     // throw new Error(error);
