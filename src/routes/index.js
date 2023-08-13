@@ -7,6 +7,7 @@ import roleRoute from "./roles.routes.js";
 import permissionRoute from "./permission.routes.js";
 import SimpleLinkRoute from "./SimpleLink.routes.js";
 import UserRoute from "./user.routes.js";
+import analyticsRoute from './analytics.routes.js'
 
 const router = Router();
 
@@ -15,5 +16,6 @@ router.use("/roles", AuthCheck(), roleRoute);
 router.use("/permissions", AuthCheck(), permissionRoute);
 router.use("/simplelink", SimpleLinkRoute);
 router.use("/user", UserRoute);
+router.use('/analytics',analyticsRoute)
 
 export default router;
