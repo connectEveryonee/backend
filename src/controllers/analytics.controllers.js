@@ -12,10 +12,28 @@ export default async function Analytics(req, res) {
       return data.name === link;
     });
     userfinder.links[finder].analytics.push({ date: date, ip: req.ip });
-    console.log(userfinder);
     await SimpleLinkModel.updateOne(
       { owner: username },
-      { links: userfinder.links, views: userfinder.views + 1 }
+      { links: userfinder.links }
+    );
+    res.send("updated viewCount on pages");
+    res.status(200);
+  } catch (error) {
+    res.send("server error");
+    res.status(500);
+    throw new Error(error);
+  }
+}
+
+export async function PageAnalytics(req, res) {
+  try {
+    const { username } = req.query;
+    const userfinder = await SimpleLinkModel.findOne({
+      owner: username,
+    });
+    await SimpleLinkModel.updateOne(
+      { owner: username },
+      { views: userfinder.views + 1 }
     );
     res.send("updated analytics");
     res.status(200);

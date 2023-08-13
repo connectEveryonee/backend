@@ -1,8 +1,11 @@
 import { Router, query } from "express";
-import Analytics from "../controllers/analytics.controllers.js";
+import Analytics, {
+  PageAnalytics,
+} from "../controllers/analytics.controllers.js";
 
-const router = Router()
+const router = Router();
 
-router.get('/updateanalytics',Analytics)
+router.get("/updateanalytics", Analytics);
+router.get("/pageanalytics", PageAnalytics);
 
-export default router
+export default router;
