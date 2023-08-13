@@ -6,8 +6,21 @@ const SimpleLinkSchema = new Schema(
     owner: {
       type: String,
     },
+    views: Number,
     uniqueId: String,
-    links: [{ name: String, description: String, url: String }],
+    links: [
+      {
+        name: String,
+        description: String,
+        url: String,
+        analytics: [
+          {
+            date: Date,
+            ip: String,
+          },
+        ],
+      },
+    ],
   },
   { timestamps: true }
 );

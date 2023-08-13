@@ -24,6 +24,7 @@ export const Register = async (req, res) => {
           email: email,
           password: await HashPassword(password),
           SimpleLink: link._id,
+          views:0
         });
 
         res.status(200).json({ msg: "created user" });

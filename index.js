@@ -30,5 +30,5 @@ app.use("/api", indexRoute);
 //dbConnection
 app.listen(process.env.Port, () => {
   DbConnect(`${process.env.Mongo_Url}`);
-  ConnectRedis();
+  // ConnectRedis();
 });
